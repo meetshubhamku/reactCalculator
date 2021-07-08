@@ -19,7 +19,9 @@ export default function App() {
     setExpression(expression + event.target.value);
   };
   const evaluateResult = () => {
-    setResult(evaluate(expression));
+    var total = evaluate(expression);
+    setResult(total);
+    setExpression(total);
   };
   const clearResult = () => {
     setExpression("");
@@ -30,65 +32,69 @@ export default function App() {
   return (
     <>
       <AppBar position="relative">
-        <Toolbar>Kalc</Toolbar>
+        <Toolbar>
+          <Typography variant="h5">Kalc</Typography>
+        </Toolbar>
       </AppBar>
       <Container maxWidth="xs">
-        <Typography variant="h2">{result ? result : "0"}</Typography>
-        <Typography variant="h6">
-          {expression ? expression : "Expression"}
-        </Typography>
-        <Grid container spacing={1}>
-          {/* Looping All digit buttons */}
-          {buttonKeys.map((item, index) => {
-            return (
-              <Grid item key={index} xs={4} sm={4} md={4}>
-                <button
-                  className={classes.button}
-                  onClick={handleClick}
-                  color="primary"
-                  value={item}
-                >
-                  {item}
-                </button>
-              </Grid>
-            );
-          })}
-          {/* Looping All operation buttons */}
-          {operationKeys.map((item, index) => {
-            return (
-              <Grid item key={index} xs={4} sm={4} md={4}>
-                <button
-                  className={classes.button}
-                  onClick={handleClick}
-                  color="secondary"
-                  value={item}
-                >
-                  {item}
-                </button>
-              </Grid>
-            );
-          })}
-          {/* Equal to (=) button */}
-          <Grid item xs={4} sm={4} md={4}>
-            <button
-              className={classes.button}
-              onClick={evaluateResult}
-              color="secondary"
-            >
-              =
-            </button>
+        <div className={classes.box}>
+          <Typography variant="h2">{result ? result : "0"}</Typography>
+          <Typography variant="h6">
+            {expression ? expression : "Expression"}
+          </Typography>
+          <Grid container spacing={1}>
+            {/* Looping All digit buttons */}
+            {buttonKeys.map((item, index) => {
+              return (
+                <Grid item key={index} xs={3} sm={3} md={3} lg={3}>
+                  <button
+                    className={classes.button}
+                    onClick={handleClick}
+                    color="primary"
+                    value={item}
+                  >
+                    {item}
+                  </button>
+                </Grid>
+              );
+            })}
+            {/* Looping All operation buttons */}
+            {operationKeys.map((item, index) => {
+              return (
+                <Grid item key={index} xs={3} sm={3} md={3} lg={3}>
+                  <button
+                    className={classes.button}
+                    onClick={handleClick}
+                    color="secondary"
+                    value={item}
+                  >
+                    {item}
+                  </button>
+                </Grid>
+              );
+            })}
+            {/* Equal to (=) button */}
+            <Grid item xs={3} sm={3} md={3} lg={3}>
+              <button
+                className={classes.button}
+                onClick={evaluateResult}
+                color="secondary"
+              >
+                =
+              </button>
+            </Grid>
+            {/* clear button */}
+            <Grid item xs={3} sm={3} md={3} lg={3}>
+              <button
+                className={classes.button}
+                onClick={clearResult}
+                color="primary"
+              >
+                Clear
+              </button>
+            </Grid>
           </Grid>
-          {/* clear button */}
-          <Grid item xs={4} sm={4} md={4} lg={4}>
-            <button
-              className={classes.button}
-              onClick={clearResult}
-              color="primary"
-            >
-              Clear
-            </button>
-          </Grid>
-        </Grid>
+        </div>
       </Container>
     </>
   );

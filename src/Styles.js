@@ -11,5 +11,11 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "1.1rem",
     color: "#B8DFD8",
   },
+  box: {
+    backgroundColor: "#fbf5f5",
+    borderRadius: "12px",
+    padding: "20px 20px",
+    marginTop: "10px",
+  },
 }));
 export default useStyles;
